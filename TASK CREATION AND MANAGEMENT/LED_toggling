@@ -22,33 +22,11 @@
 #include "task.h"
 #include <stdio.h>
 #include <string.h>
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
-
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef huart2;
 
 extern void initialise_monitor_handles(void);
-
-
-/* USER CODE BEGIN PV */
 
 void Task1_LED_GREEN(void *pvParameters);
 void Task2_LED_EXTERNAL(void *pvParameters);
@@ -72,7 +50,7 @@ void Task2_LED_EXTERNAL(void *pvParameters)
 	vTaskDelay(pdMS_TO_TICKS(1000));
 	}
 }
-/* USER CODE END PV */
+
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -80,16 +58,10 @@ static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 
 
-/* USER CODE BEGIN PFP */
-
-/* USER CODE END PFP */
-
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
 //task handles
 TaskHandle_t Task1_Handle = NULL;
 TaskHandle_t Task2_Handle = NULL;
-/* USER CODE END 0 */
+
 
 /**
   * @brief  The application entry point.
@@ -98,31 +70,21 @@ TaskHandle_t Task2_Handle = NULL;
 int main(void)
 {
 	initialise_monitor_handles();
-  /* USER CODE BEGIN 1 */
- printf("hELLO WORLD\n");
-  /* USER CODE END 1 */
+    printf("hELLO WORLD\n");
+
 
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
   /* Configure the system clock */
   SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART2_UART_Init();
-  /* USER CODE BEGIN 2 */
-
 
   xTaskCreate(
        Task1_LED_GREEN,        // task implementation function
@@ -145,36 +107,6 @@ int main(void)
   // Start the FreeRTOS scheduler
   vTaskStartScheduler();
 
-
-  /* USER CODE END 2 */
-
-  /* USER CODE BEGIN RTOS_MUTEX */
-  /* add mutexes, ... */
-  /* USER CODE END RTOS_MUTEX */
-
-  /* USER CODE BEGIN RTOS_SEMAPHORES */
-  /* add semaphores, ... */
-  /* USER CODE END RTOS_SEMAPHORES */
-
-  /* USER CODE BEGIN RTOS_TIMERS */
-  /* start timers, add new ones, ... */
-  /* USER CODE END RTOS_TIMERS */
-
-  /* USER CODE BEGIN RTOS_QUEUES */
-  /* add queues, ... */
-  /* USER CODE END RTOS_QUEUES */
-
-  /* Create the thread(s) */
-  /* definition and creation of defaultTask */
-
-  /* USER CODE BEGIN RTOS_THREADS */
-  /* add threads, ... */
-  /* USER CODE END RTOS_THREADS */
-
-  /* Start scheduler */
-
-
-  /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
